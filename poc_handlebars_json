@@ -1,0 +1,15 @@
+{
+  "graphics": {
+   "buttonName" : "Next Build ma bonne lire !",
+   "produit" : "SLD Java",
+   "version" : "V4.12.6",
+   "autrePropGraph" : "laliiiirrreee"
+  },
+  
+  
+  "listMantis": [
+      {"numero": "1122", "type": "Evol", "description": "jolie description", "chiffr" : "0,5", "etat" : "En Cours", "comm" : "Commentaire à la con"},
+      {"numero": "2233", "type": "Evol", "description": "belle description", "chiffr" : "1,25", "etat" : "En Cours", "comm" : "Commentaire classe !"},
+      {"numero": "", "type": "", "description": "", "chiffr" : "", "etat" : "", "comm" : ""}
+  ]
+}

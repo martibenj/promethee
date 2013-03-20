@@ -1,0 +1,24 @@
+<h1>{{graphics.produit}} - {{graphics.version}}</h1>
+<form>
+   <input type="button" value="{{graphics.buttonName}}"/>
+   <table border="5">
+      <tr>
+	 <td>Mantis</td>
+	 <td>Type</td>
+	 <td>Description</td>
+	 <td>Chiffrage</td>
+	 <td>Etat</td>
+	 <td>Commentaire</td>
+      </tr>
+      {{#listMantis}}
+      <tr>
+	 <td>{{numero}}</td>
+	 <td>{{type}}</td>
+	 <td>{{description}}</td>
+	 <td>{{chiffr}}</td>
+	 <td>{{etat}}</td>
+	 <td>{{comm}}</td>
+      </tr>
+      {{/listMantis}}
+   </table>
+</form>
