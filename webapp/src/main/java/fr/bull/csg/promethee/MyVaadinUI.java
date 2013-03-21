@@ -1,12 +1,10 @@
 package fr.bull.csg.promethee;
 
-import com.vaadin.server.Sizeable;
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.*;
-import com.vaadin.ui.Button.ClickEvent;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.vaadin.server.VaadinRequest;
+import com.vaadin.ui.*;
 
 /**
  * The Application's "main" class
