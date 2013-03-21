@@ -14,3 +14,21 @@ Vaadin :
  - Archi vaadin : https://vaadin.com/image/image_gallery?uuid=453a301a-798c-4daf-aea7-3fd115c0d88a&groupId=10187&t=1349442259604
                   http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/arch/architecture-detailed-lo.png
                   http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/arch/clientside-arch-lo.png
+                   server side : http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/application/application-architecture-lo.png
+
+ - classe UI décrit l'user interface
+    -> cela représente un fragment HTML -> il peut y'en avoir plusieurs
+
+ - possibilités de faire des vues de composants (layout préconfiguré avec des composants)
+
+ - système de listeners pour écouter les évenements lié à l'interface
+
+ - système de notifications
+
+ - composants graphiques :
+        page de documentation : https://vaadin.com/book/-/page/components.html
+        hiérarchie : http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/components/component-diagram-lo.png
+
+ - existe un SQLContainer et JPAContainer
+
+ - integration client avec server side : https://vaadin.com/book/-/page/gwt.html
