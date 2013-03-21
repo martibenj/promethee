@@ -17,13 +17,18 @@ public class MyVaadinUI extends UI
 
     @Override
     protected void init(VaadinRequest request) {
-        GridLayout layout = new GridLayout(3, 3);
 
-        setContent(layout);
+        VerticalLayout vert1 = new VerticalLayout();
+        setContent(vert1);
+
+        HorizontalLayout layout = new HorizontalLayout();
+        vert1.addComponent(layout);
+
 
         ComboBox branch = new ComboBox("Branche");
         branch.addItem("prod");
         branch.addItem("branch1");
+        branch.addItem("branch2");
         branch.addItem("trunk");
 
         layout.addComponent(branch);
@@ -37,8 +42,9 @@ public class MyVaadinUI extends UI
 
         layout.addComponent(version);
 
+
         TextField textField = new TextField("Search");
-        layout.addComponent(textField, 2, 1);
+        vert1.addComponent(textField);
 
         Table table = new Table();
         table.addContainerProperty("#Mantis", String.class, null);
@@ -65,7 +71,7 @@ public class MyVaadinUI extends UI
             i++;
         }
 
-        layout.addComponent(table, 2, 2);
+        vert1.addComponent(table);
     }
 
 }
