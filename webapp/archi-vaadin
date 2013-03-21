@@ -1,0 +1,16 @@
+Vaadin :
+
+ - Construit sur GWT
+   -> browser independant
+
+ - Développement en Java
+    -> UI décrite et compilé/traduite en Javascript par le framework
+    -> AWT/SWING style (définitions des layouts, components etc)
+    -> possibilité de mettre les mains dans le CSS pour customiser des comportements
+
+ - Projet facile à démarrer
+   -> archetype maven (donc intégrations dans les IDE gérant maven : eclipse / idea)
+
+ - Archi vaadin : https://vaadin.com/image/image_gallery?uuid=453a301a-798c-4daf-aea7-3fd115c0d88a&groupId=10187&t=1349442259604
+                  http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/arch/architecture-detailed-lo.png
+                  http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/arch/clientside-arch-lo.png
