@@ -1,26 +1,20 @@
 package fr.bull.csg.promethee;
 
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.*;
 
 /**
  * The Application's "main" class
  */
-@SuppressWarnings("serial")
-public class MyVaadinUI extends UI
+public class PagePrincipale extends VerticalLayout implements View
 {
-
-    @Override
-    protected void init(VaadinRequest request) {
-
-        VerticalLayout vert1 = new VerticalLayout();
-        setContent(vert1);
-
+    public PagePrincipale() {
         HorizontalLayout layout = new HorizontalLayout();
-        vert1.addComponent(layout);
+        addComponent(layout);
 
 
         ComboBox branch = new ComboBox("Branche");
@@ -42,7 +36,8 @@ public class MyVaadinUI extends UI
 
 
         TextField textField = new TextField("Search");
-        vert1.addComponent(textField);
+        addComponent(textField);
+
 
         Table table = new Table();
         table.addContainerProperty("#Mantis", String.class, null);
@@ -69,7 +64,21 @@ public class MyVaadinUI extends UI
             i++;
         }
 
-        vert1.addComponent(table);
+        addComponent(table);
+
+        Button button = new Button("vers seconde page", new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getUI().getNavigator().navigateTo(NavigatorUI.DEUXIEME_PAGE);
+            }
+        });
+
+        addComponent(button);
+    }
+
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+        Notification.show("Bienvenue sur la page : " + event.getViewName());
     }
 
 }
