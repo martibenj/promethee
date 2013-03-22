@@ -10,9 +10,9 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * @author Thomas Gueze
  */
-public class Page2  extends VerticalLayout implements View {
+public class IndexBuilds extends VerticalLayout implements View {
 
-    public Page2() {
+    public IndexBuilds() {
         ComboBox branch = new ComboBox("Branche");
         branch.addItem("prod");
         branch.addItem("branch1");
@@ -24,7 +24,7 @@ public class Page2  extends VerticalLayout implements View {
         Button button = new Button("vers page principale", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                getUI().getNavigator().navigateTo(NavigatorUI.PREMIERE_PAGE);
+                getUI().getNavigator().navigateTo(NavigatorUI.VUE_BUILD);
             }
         });
         addComponent(button);
