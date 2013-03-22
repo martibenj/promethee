@@ -115,14 +115,14 @@
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>2.4.1</version>
-                <!--
+
 				<configuration>
-					<filesets>
+					<!--<filesets>
 						<fileset>
 							<directory>src/main/webapp/VAADIN/widgetsets</directory>
 						</fileset>
-					</filesets>
-				</configuration> -->
+					</filesets>-->
+				</configuration>
 			</plugin>
 			<!-- Plugin Server Light -->
 			<plugin>
@@ -151,7 +151,8 @@
 						<goals>
 							<goal>resources</goal>
 							<!-- L'update n'est à lancer que lorsque de nouveaux composants GWT 
-								sont utilisés.<goal>update-widgetset</goal> -->
+								sont utilisés. -->
+							<!-- <goal>update-widgetset</goal>-->
 							<goal>compile</goal>
 						</goals>
 					</execution>
@@ -178,7 +179,8 @@
 										<goals>
 											<goal>resources</goal>
 											<!-- L'update n'est à lancer que lorsque de nouveaux composants 
-												GWT sont utilisés.<goal>update-widgetset</goal> -->
+												GWT sont utilisés. -->
+											<!-- <goal>update-widgetset</goal> -->
 											<goal>compile</goal>
 										</goals>
 									</pluginExecutionFilter>
