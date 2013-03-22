@@ -9,8 +9,8 @@ import com.vaadin.ui.UI;
  */
 public class NavigatorUI extends UI {
 
-    public static final String PREMIERE_PAGE = "Premiere Page";
-    public static final String DEUXIEME_PAGE = "Deuxieme Page";
+    public static final String INDEX_BUILDS = "IndexBuilds";
+    public static final String VUE_BUILD = "VUE_BUILD";
 
     Navigator navigator;
 
@@ -22,9 +22,9 @@ public class NavigatorUI extends UI {
         navigator = new Navigator(this, this);
 
         // Create and register the views
-        navigator.addView(PREMIERE_PAGE, new PagePrincipale());
-        navigator.addView(DEUXIEME_PAGE, new Page2());
+        navigator.addView(INDEX_BUILDS, new IndexBuilds());
+        navigator.addView(VUE_BUILD, new VueBuild());
 
-        navigator.navigateTo(PREMIERE_PAGE);
+        navigator.navigateTo(INDEX_BUILDS);
     }
 }

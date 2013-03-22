@@ -1,5 +1,6 @@
 package fr.bull.csg.promethee;
 
+import com.vaadin.data.Property;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
@@ -10,9 +11,9 @@ import java.util.List;
 /**
  * The Application's "main" class
  */
-public class PagePrincipale extends VerticalLayout implements View
+public class VueBuild extends VerticalLayout implements View
 {
-    public PagePrincipale() {
+    public VueBuild() {
         HorizontalLayout layout = new HorizontalLayout();
         addComponent(layout);
 
@@ -23,14 +24,36 @@ public class PagePrincipale extends VerticalLayout implements View
         branch.addItem("branch2");
         branch.addItem("trunk");
 
-        layout.addComponent(branch);
+        branch.setValue("trunk");
+        branch.setImmediate(true);
+        branch.setNullSelectionAllowed(false);
 
-        ComboBox version = new ComboBox("version");
+        final ComboBox version = new ComboBox();
         version.addItem("1");
         version.addItem("2");
         version.addItem("3");
 
         version.setValue("1");
+        version.setNullSelectionAllowed(false);
+//        version.setImmediate(true);
+//        version.setCaption("version");
+
+        branch.addValueChangeListener(new Property.ValueChangeListener() {
+            @Override
+            public void valueChange(Property.ValueChangeEvent event) {
+                if ("prod".equals(event.getProperty().getValue())) {
+                    version.removeAllItems();
+                    version.addItem("4");
+                    version.addItem("5");
+                    version.addItem("6");
+                    version.setValue("4");
+//                    version.setCaption("version");
+                }
+            }
+        });
+
+        layout.addComponent(branch);
+
 
         layout.addComponent(version);
 
@@ -69,7 +92,7 @@ public class PagePrincipale extends VerticalLayout implements View
         Button button = new Button("vers seconde page", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                getUI().getNavigator().navigateTo(NavigatorUI.DEUXIEME_PAGE);
+                getUI().getNavigator().navigateTo(NavigatorUI.INDEX_BUILDS);
             }
         });
 
