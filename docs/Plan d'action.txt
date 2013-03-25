@@ -1,0 +1,16 @@
+Les prochains axes sont :
+- Vérifier les fonctionnalités techniques demandés (doc archi)
+- Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
+- Tester les CSS si besoin (latence notamment)
+- Exporter un bout du listener pour avoir un vrai controller
+
+Bnj : 
+- Voir pour précompiler et éviter la latence lors de la première demande de l'IHM
+- Mettre en place une BD H2
+
+Corto :
+- Avoir des POJO et des données en java pour remplir la view
+- Tester l'intégration d'un FMK JEE (hibernate)
+- Récupérer des data depuis une BD
+
+
