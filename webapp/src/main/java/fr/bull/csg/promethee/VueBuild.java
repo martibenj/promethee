@@ -14,11 +14,12 @@ import java.util.List;
 public class VueBuild extends VerticalLayout implements View
 {
     public VueBuild() {
-        HorizontalLayout layout = new HorizontalLayout();
-        addComponent(layout);
 
+        setSizeUndefined();
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        addComponent(horizontalLayout);
 
-        ComboBox branch = new ComboBox("Branche");
+        ComboBox branch = new ComboBox();
         branch.addItem("prod");
         branch.addItem("branch1");
         branch.addItem("branch2");
@@ -35,8 +36,6 @@ public class VueBuild extends VerticalLayout implements View
 
         version.setValue("1");
         version.setNullSelectionAllowed(false);
-//        version.setImmediate(true);
-//        version.setCaption("version");
 
         branch.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
@@ -47,22 +46,29 @@ public class VueBuild extends VerticalLayout implements View
                     version.addItem("5");
                     version.addItem("6");
                     version.setValue("4");
-//                    version.setCaption("version");
                 }
             }
         });
 
-        layout.addComponent(branch);
+        horizontalLayout.addComponent(branch);
 
+        horizontalLayout.addComponent(version);
 
-        layout.addComponent(version);
+        HorizontalLayout searchLayout = new HorizontalLayout();
+        searchLayout.setSizeFull();
+        addComponent(searchLayout);
 
-
-        TextField textField = new TextField("Search");
-        addComponent(textField);
-
+        Label labelSearch = new Label("Search");
+        labelSearch.setStyleName("couleurRouge");
+        searchLayout.addComponent(labelSearch);
+        TextField textField = new TextField();
+        searchLayout.addComponent(textField);
+        searchLayout.setComponentAlignment(labelSearch, Alignment.TOP_RIGHT);
+        searchLayout.setComponentAlignment(textField, Alignment.TOP_RIGHT);
 
         Table table = new Table();
+        table.setPageLength(0);
+        table.setSizeUndefined();
         table.addContainerProperty("#Mantis", String.class, null);
 
         table.addContainerProperty("Type", String.class, null);

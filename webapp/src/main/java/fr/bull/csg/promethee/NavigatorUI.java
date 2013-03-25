@@ -1,5 +1,6 @@
 package fr.bull.csg.promethee;
 
+import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
@@ -7,6 +8,7 @@ import com.vaadin.ui.UI;
 /**
  * @author Thomas Gueze
  */
+@Theme("promethee")
 public class NavigatorUI extends UI {
 
     public static final String INDEX_BUILDS = "IndexBuilds";
