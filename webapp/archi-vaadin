@@ -32,3 +32,8 @@ Vaadin :
  - existe un SQLContainer et JPAContainer
 
  - integration client avec server side : https://vaadin.com/book/-/page/gwt.html
+ 
+ A vérifier
+ - Edition de tableau
+ - Positionnement post it
+ - Couleur changeante par css ? 
