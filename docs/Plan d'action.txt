@@ -14,3 +14,6 @@ Corto :
 - Récupérer des data depuis une BD
 
 
+Echéance : Jeudi Matin
+=> Présenter les solutions techniques pour les besoins ergonomiques de Julio.
+=> Présenter la progression depuis la derniere réunion 25/3
