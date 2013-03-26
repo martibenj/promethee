@@ -1,19 +1,29 @@
 Les prochains axes sont :
 - Vérifier les fonctionnalités techniques demandés (doc archi)
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
-- Tester les CSS si besoin (latence notamment)
 - Exporter un bout du listener pour avoir un vrai controller
-
-Bnj : 
-- Voir pour précompiler et éviter la latence lors de la première demande de l'IHM
-- Mettre en place une BD H2
-
-Corto :
-- Avoir des POJO et des données en java pour remplir la view
 - Tester l'intégration d'un FMK JEE (hibernate)
 - Récupérer des data depuis une BD
 
+Bnj : 
 
+
+Corto :
+- Avoir des POJO et des données en java pour remplir la view
+
+------------------------------
 Echéance : Jeudi Matin
 => Présenter les solutions techniques pour les besoins ergonomiques de Julio.
 => Présenter la progression depuis la derniere réunion 25/3
+=> MAN ?
+
+Done : 
+- Voir pour précompiler et éviter la latence lors de la première demande de l'IHM
+=> Pas de solution à part minimiser le nombre de composant par page.
+Le premier chargement est plus long à cause de la récupération du WidgetSet
+
+- Mettre en place une BD H2
+=> H2 déployée sur vm08:8082
+
+- Tester les CSS si besoin (latence notamment)
+=> POC Dispo dans git
