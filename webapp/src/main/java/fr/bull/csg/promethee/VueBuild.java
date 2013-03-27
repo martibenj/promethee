@@ -98,7 +98,7 @@ public class VueBuild extends VerticalLayout implements View
         Button button = new Button("vers seconde page", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-                getUI().getNavigator().navigateTo(NavigatorUI.INDEX_BUILDS);
+                getUI().getNavigator().navigateTo(NavigatorUI.DASHBOARD_VERSIONS);
             }
         });
 

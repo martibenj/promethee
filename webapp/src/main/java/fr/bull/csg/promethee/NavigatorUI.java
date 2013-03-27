@@ -1,32 +1,54 @@
 package fr.bull.csg.promethee;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
+import fr.bull.csg.promethee.beans.ListeurVersions;
+import fr.bull.csg.promethee.views.DashboardVersions;
+
 /**
  * @author Thomas Gueze
  */
+@Component
+@Scope("prototype")
 @Theme("promethee")
-public class NavigatorUI extends UI {
+public class NavigatorUI extends UI
+{
+   /** Serial UID. */
+   private static final long serialVersionUID = 3800400020780939588L;
 
-    public static final String INDEX_BUILDS = "IndexBuilds";
-    public static final String VUE_BUILD = "VUE_BUILD";
+   @Autowired
+   private transient ApplicationContext applicationContext;
 
-    Navigator navigator;
+   @Autowired
+   private ListeurVersions m_listeurVersions;
 
-    @Override
-    protected void init(VaadinRequest request) {
-        getPage().setTitle("Navigation Example");
+   public static final String DASHBOARD_VERSIONS = "DashboardVersions";
 
-        // Create a navigator to control the views
-        navigator = new Navigator(this, this);
+   public static final String VUE_BUILD = "VUE_BUILD";
 
-        // Create and register the views
-        navigator.addView(INDEX_BUILDS, new IndexBuilds());
-        navigator.addView(VUE_BUILD, new VueBuild());
+   private Navigator m_navigator;
 
-        navigator.navigateTo(INDEX_BUILDS);
-    }
+   @Override
+   protected void init(VaadinRequest request)
+   {
+      m_listeurVersions.listerLesVersionsDisponibles();
+      getPage().setTitle("POC Prométhée");
+
+      // Create a navigator to control the views
+      m_navigator = new Navigator(this, this);
+
+      // Create and register the views
+      m_navigator.addView(DASHBOARD_VERSIONS, new DashboardVersions());
+      m_navigator.addView(VUE_BUILD, new VueBuild());
+
+      m_navigator.navigateTo(DASHBOARD_VERSIONS);
+   }
 }
