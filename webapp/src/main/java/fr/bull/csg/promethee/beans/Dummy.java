@@ -1,4 +1,4 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.beans;
 
 import org.springframework.stereotype.Component;
 

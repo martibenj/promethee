@@ -1,7 +1,9 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.views;
 
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Field;
+
+import fr.bull.csg.promethee.pojo.ColumnIdentifier;
 
 import java.util.Map;
 

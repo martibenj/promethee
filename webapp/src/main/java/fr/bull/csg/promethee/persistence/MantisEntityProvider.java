@@ -1,6 +1,8 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.persistence;
 
 import javax.ejb.Stateless;
+
+import fr.bull.csg.promethee.pojo.Mantis;
 
 /**
  * @author Thomas Gueze

@@ -1,4 +1,4 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.views;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,16 +16,17 @@ import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalLayout;
 
+import fr.bull.csg.promethee.ui.NavigatorUI;
+
 /**
  * @author Martiben
  */
-public class IndexBuilds extends VerticalLayout implements View
+public class DashboardVersionsView extends VerticalLayout implements View
 {
-
    /** Serial UID. */
    private static final long serialVersionUID = -7081680636978287909L;
 
-   public IndexBuilds()
+   public DashboardVersionsView()
    {
       buildMainLayout();
       addComponent(mainLayout);
@@ -34,11 +35,11 @@ public class IndexBuilds extends VerticalLayout implements View
 
    private void valoComposants()
    {
-      //Seulement les lignes remplies
+      // Seulement les lignes remplies
       table_1.setPageLength(0);
       table_2.setPageLength(0);
       table_3.setPageLength(0);
-      
+
       // Noms de colonnes
       table_1.addContainerProperty("#", String.class, null);
       table_1.addContainerProperty("Nom de build", String.class, null);

@@ -1,4 +1,4 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.persistence;
 
 import com.vaadin.addon.jpacontainer.provider.MutableLocalEntityProvider;
 

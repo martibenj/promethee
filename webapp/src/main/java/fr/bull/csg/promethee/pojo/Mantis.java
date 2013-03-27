@@ -1,4 +1,4 @@
-package fr.bull.csg.promethee;
+package fr.bull.csg.promethee.pojo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
