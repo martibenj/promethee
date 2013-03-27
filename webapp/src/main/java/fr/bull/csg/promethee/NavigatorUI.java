@@ -34,7 +34,7 @@ public class NavigatorUI extends UI
       final Dummy bean = (Dummy) helper.getBean("dummy");
       System.out.println("1=" + bean.dumbdumb());
 
-      // System.out.println("2=" + m_dummy.dumbdumb());
+      System.out.println("2=" + m_dummy.dumbdumb());
       getPage().setTitle("Navigation Example");
 
       // Create a navigator to control the views
