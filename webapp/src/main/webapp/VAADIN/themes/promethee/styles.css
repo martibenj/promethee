@@ -1,5 +1,13 @@
 @import "../reindeer/legacy-styles.css";
 
-.couleurRouge {
-   color: red;
+.v-widget .v-caption-search {
+    display: inline-block;
+}
+
+.v-widget .v-caption-search .v-captiontext {
+    /*margin: auto;*/
+}
+
+.selectBox {
+
 }

@@ -29,7 +29,7 @@ Vaadin :
         page de documentation : https://vaadin.com/book/-/page/components.html
         hiérarchie : http://vaadin.com/download/book-of-vaadin/vaadin-7/html/img/components/component-diagram-lo.png
 
- - existe un SQLContainer et JPAContainer
+ - existe un SQLContainer et JPAContainer : https://vaadin.com/book/-/page/jpacontainer.html
 
  - integration client avec server side : https://vaadin.com/book/-/page/gwt.html
  

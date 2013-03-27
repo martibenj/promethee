@@ -1,18 +1,20 @@
 package fr.bull.csg.promethee;
 
+import com.vaadin.data.Container;
 import com.vaadin.data.Property;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The Application's "main" class
  */
-public class VueBuild extends VerticalLayout implements View
-{
+public class VueBuild extends VerticalLayout implements View {
     public VueBuild() {
 
         setSizeUndefined();
@@ -28,6 +30,7 @@ public class VueBuild extends VerticalLayout implements View
         branch.setValue("trunk");
         branch.setImmediate(true);
         branch.setNullSelectionAllowed(false);
+        branch.setStyleName("selectBox");
 
         final ComboBox version = new ComboBox();
         version.addItem("1");
@@ -36,6 +39,7 @@ public class VueBuild extends VerticalLayout implements View
 
         version.setValue("1");
         version.setNullSelectionAllowed(false);
+        version.setStyleName("selectBox");
 
         branch.addValueChangeListener(new Property.ValueChangeListener() {
             @Override
@@ -53,45 +57,66 @@ public class VueBuild extends VerticalLayout implements View
         horizontalLayout.addComponent(branch);
 
         horizontalLayout.addComponent(version);
+        setMargin(true);
 
-        HorizontalLayout searchLayout = new HorizontalLayout();
-        searchLayout.setSizeFull();
-        addComponent(searchLayout);
-
-        Label labelSearch = new Label("Search");
-        labelSearch.setStyleName("couleurRouge");
-        searchLayout.addComponent(labelSearch);
-        TextField textField = new TextField();
-        searchLayout.addComponent(textField);
-        searchLayout.setComponentAlignment(labelSearch, Alignment.TOP_RIGHT);
-        searchLayout.setComponentAlignment(textField, Alignment.TOP_RIGHT);
+        TextField textField = new TextField("Search");
+        textField.setStyleName("search");
+        addComponent(textField);
+        setComponentAlignment(textField, Alignment.TOP_RIGHT);
 
         Table table = new Table();
         table.setPageLength(0);
         table.setSizeUndefined();
-        table.addContainerProperty("#Mantis", String.class, null);
+        table.setContainerDataSource(ModelContainer.getModelContainer(Mantis.class));
+//        table.addContainerProperty("#Mantis", String.class, null);
+//
+//        table.addContainerProperty("Type", String.class, null);
+//        table.addContainerProperty("Description", String.class, null);
+//        table.addContainerProperty("Chiffrage", String.class, null);
+//        table.addContainerProperty("Consomme", String.class, null);
+//        table.addContainerProperty("Etat", String.class, null);
+//        table.addContainerProperty("Affecte", String.class, null);
+//        table.addContainerProperty("Commentaire", String.class, null);
 
-        table.addContainerProperty("Type", String.class, null);
-        table.addContainerProperty("Description", String.class, null);
-        table.addContainerProperty("Chiffrage", String.class, null);
-        table.addContainerProperty("Consomme", String.class, null);
-        table.addContainerProperty("Etat", String.class, null);
-        table.addContainerProperty("Affecte", String.class, null);
-        table.addContainerProperty("Commentaire", String.class, null);
+        table.setColumnCollapsingAllowed(true);
 
-        List<Object[]> listeMantis = new ArrayList<Object[]>();
-        listeMantis.add(new Object[]{"1", "correctif", "Mantis 1", "1", "0", "A traiter", "GFA", "commentaire"});
-        listeMantis.add(new Object[]{"2", "correctif", "Mantis 2", "1", "0", "A traiter", "GFA", "commentaire"});
-        listeMantis.add(new Object[]{"3", "evolution", "Mantis 3", "1", "0", "A traiter", "GFA", "commentaire"});
-        listeMantis.add(new Object[]{"4", "correctif", "Mantis 4", "1", "0", "A traiter", "GFA", "commentaire"});
-        listeMantis.add(new Object[]{"5", "correctif", "Mantis 5", "1", "0", "A traiter", "GFA", "commentaire"});
-        listeMantis.add(new Object[]{"6", "evolution", "Mantis 6", "1", "0", "A traiter", "GFA", "commentaire"});
+        table.setImmediate(true);
+        final Map<ColumnIdentifier, Field> tableFields = new HashMap<ColumnIdentifier, Field>();
+        TableFieldFactory fieldFactory = new TableFieldFactory() {
+            @Override
+            public Field<?> createField(Container container, Object itemId, Object propertyId, Component uiContext) {
+                final TextField field = new TextField((String) propertyId);
+                field.setImmediate(true);
+                tableFields.put(new ColumnIdentifier(itemId, propertyId), field);
+                field.setReadOnly(true);
+                field.addValueChangeListener(new Property.ValueChangeListener() {
+                    @Override
+                    public void valueChange(Property.ValueChangeEvent event) {
+                        field.setReadOnly(true);
+                    }
+                });
+                return field;
+            }
+        };
+        table.setTableFieldFactory(fieldFactory);
 
-        int i = 0;
-        for (Object[] mantis : listeMantis) {
-            table.addItem(mantis, i);
-            i++;
-        }
+        table.setEditable(true);
+        table.addItemClickListener(new TransformCellToEditable(tableFields));
+
+
+//        List<Object[]> listeMantis = new ArrayList<Object[]>();
+//        listeMantis.add(new Object[]{"1", "correctif", "Mantis 1", "1", "0", "A traiter", "GFA", "commentaire"});
+//        listeMantis.add(new Object[]{"2", "correctif", "Mantis 2", "1", "0", "A traiter", "GFA", "commentaire"});
+//        listeMantis.add(new Object[]{"3", "evolution", "Mantis 3", "1", "0", "A traiter", "GFA", "commentaire"});
+//        listeMantis.add(new Object[]{"4", "correctif", "Mantis 4", "1", "0", "A traiter", "GFA", "commentaire"});
+//        listeMantis.add(new Object[]{"5", "correctif", "Mantis 5", "1", "0", "A traiter", "GFA", "commentaire"});
+//        listeMantis.add(new Object[]{"6", "evolution", "Mantis 6", "1", "0", "A traiter", "GFA", "commentaire"});
+//
+//        int i = 0;
+//        for (Object[] mantis : listeMantis) {
+//            table.addItem(mantis, i);
+//            i++;
+//        }
 
         addComponent(table);
 
