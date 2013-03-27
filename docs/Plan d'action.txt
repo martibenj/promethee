@@ -2,11 +2,10 @@ Les prochains axes sont :
 - Vérifier les fonctionnalités techniques demandés (doc archi)
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
 - Exporter un bout du listener pour avoir un vrai controller
-- Tester l'intégration d'un FMK JEE (hibernate)
 - Récupérer des data depuis une BD
 
 Bnj : 
-
+- Tester l'intégration d'un FMK JEE (spring)
 
 Corto :
 - Avoir des POJO et des données en java pour remplir la view
