@@ -14,8 +14,8 @@ public class ModelContainer<T> {
 
     private ModelContainer(Class<T> clazz) {
         jpaContainer = JPAContainerFactory.make(clazz, "promethee");
-        EntityProvider e = new MantisEntityProvider();
-        jpaContainer.setEntityProvider(e);
+//        EntityProvider e = new MantisEntityProvider();
+//        jpaContainer.setEntityProvider(e);
     }
 
     public static <E> Container getModelContainer(Class<E> clazz) {
