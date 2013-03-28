@@ -5,10 +5,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-
+/**
+ * Bean relativement inutile actuellement, servant uniquement au POC d'intégration de Spring dans Vaadin.
+ * @author martiben
+ */
 @Component
 public class ListeurVersions
 {
+   /**
+    * Liste des versions disponibles.
+    * @return La liste des versions disponibles
+    */
    public List<String> listerLesVersionsDisponibles()
    {
       List<String> result = new ArrayList<String>();
