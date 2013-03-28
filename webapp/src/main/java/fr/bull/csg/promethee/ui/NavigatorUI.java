@@ -1,5 +1,6 @@
 package fr.bull.csg.promethee.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.vaadin.annotations.Theme;
@@ -7,6 +8,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
+import fr.bull.csg.promethee.beans.ListeurVersions;
 import fr.bull.csg.promethee.views.DashboardVersionsView;
 import fr.bull.csg.promethee.views.DetailBuildView;
 
@@ -30,9 +32,13 @@ public class NavigatorUI extends UI
    /** Objet Vaadin servant de controleur technique Framework. */
    private Navigator navigator;
 
+   @Autowired
+   private ListeurVersions m_listeurVersions;
+
    @Override
    protected void init(VaadinRequest request)
    {
+      System.out.println("Nav="+m_listeurVersions.listerLesVersionsDisponibles());
       // Création du navigator
       navigator = new Navigator(this, this);
 

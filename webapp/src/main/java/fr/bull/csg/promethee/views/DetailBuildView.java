@@ -6,9 +6,9 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 
+import fr.bull.csg.promethee.model.Mantis;
 import fr.bull.csg.promethee.persistence.ModelContainer;
 import fr.bull.csg.promethee.pojo.ColumnIdentifier;
-import fr.bull.csg.promethee.pojo.Mantis;
 import fr.bull.csg.promethee.ui.NavigatorUI;
 
 import java.util.ArrayList;
@@ -17,16 +17,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Application's "main" class
+ * Page de détail d'une version/build.
+ * @author Thomas Gueze
  */
 public class DetailBuildView extends VerticalLayout implements View
 {
    /** Serial UID. */
    private static final long serialVersionUID = -3581253796593740550L;
 
+   /** Constructeur. */
    public DetailBuildView()
    {
-
       setSizeUndefined();
       HorizontalLayout horizontalLayout = new HorizontalLayout();
       addComponent(horizontalLayout);
@@ -53,6 +54,9 @@ public class DetailBuildView extends VerticalLayout implements View
 
       branch.addValueChangeListener(new Property.ValueChangeListener()
       {
+         /** Serial UID. */
+         private static final long serialVersionUID = 2757333459584776196L;
+
          @Override
          public void valueChange(Property.ValueChangeEvent event)
          {
@@ -68,7 +72,6 @@ public class DetailBuildView extends VerticalLayout implements View
       });
 
       horizontalLayout.addComponent(branch);
-
       horizontalLayout.addComponent(version);
       setMargin(true);
 
@@ -81,22 +84,15 @@ public class DetailBuildView extends VerticalLayout implements View
       table.setPageLength(0);
       table.setSizeUndefined();
       table.setContainerDataSource(ModelContainer.getModelContainer(Mantis.class));
-      // table.addContainerProperty("#Mantis", String.class, null);
-      //
-      // table.addContainerProperty("Type", String.class, null);
-      // table.addContainerProperty("Description", String.class, null);
-      // table.addContainerProperty("Chiffrage", String.class, null);
-      // table.addContainerProperty("Consomme", String.class, null);
-      // table.addContainerProperty("Etat", String.class, null);
-      // table.addContainerProperty("Affecte", String.class, null);
-      // table.addContainerProperty("Commentaire", String.class, null);
-
       table.setColumnCollapsingAllowed(true);
 
       table.setImmediate(true);
       final Map<ColumnIdentifier, Field> tableFields = new HashMap<ColumnIdentifier, Field>();
       TableFieldFactory fieldFactory = new TableFieldFactory()
       {
+         /** Serial UID. */
+         private static final long serialVersionUID = 2404377481412862197L;
+
          @Override
          public Field<?> createField(Container container, Object itemId, Object propertyId, Component uiContext)
          {
@@ -106,6 +102,9 @@ public class DetailBuildView extends VerticalLayout implements View
             field.setReadOnly(true);
             field.addValueChangeListener(new Property.ValueChangeListener()
             {
+               /** Serial UID. */
+               private static final long serialVersionUID = 1507880582120630053L;
+
                @Override
                public void valueChange(Property.ValueChangeEvent event)
                {
@@ -119,39 +118,25 @@ public class DetailBuildView extends VerticalLayout implements View
 
       table.setEditable(true);
       table.addItemClickListener(new TransformCellToEditable(tableFields));
-
-      // List<Object[]> listeMantis = new ArrayList<Object[]>();
-      // listeMantis.add(new Object[]{"1", "correctif", "Mantis 1", "1", "0", "A traiter", "GFA", "commentaire"});
-      // listeMantis.add(new Object[]{"2", "correctif", "Mantis 2", "1", "0", "A traiter", "GFA", "commentaire"});
-      // listeMantis.add(new Object[]{"3", "evolution", "Mantis 3", "1", "0", "A traiter", "GFA", "commentaire"});
-      // listeMantis.add(new Object[]{"4", "correctif", "Mantis 4", "1", "0", "A traiter", "GFA", "commentaire"});
-      // listeMantis.add(new Object[]{"5", "correctif", "Mantis 5", "1", "0", "A traiter", "GFA", "commentaire"});
-      // listeMantis.add(new Object[]{"6", "evolution", "Mantis 6", "1", "0", "A traiter", "GFA", "commentaire"});
-      //
-      // int i = 0;
-      // for (Object[] mantis : listeMantis) {
-      // table.addItem(mantis, i);
-      // i++;
-      // }
-
       addComponent(table);
 
       Button button = new Button("vers seconde page", new Button.ClickListener()
       {
+         /** Serial UID. */
+         private static final long serialVersionUID = 8866649906609256903L;
+
          @Override
          public void buttonClick(Button.ClickEvent event)
          {
             getUI().getNavigator().navigateTo(NavigatorUI.DASHBOARD_VERSIONS);
          }
       });
-
       addComponent(button);
    }
 
    @Override
    public void enter(ViewChangeListener.ViewChangeEvent event)
    {
-      Notification.show("Bienvenue sur la page : " + event.getViewName());
+      // Notification.show("Bienvenue sur la page : " + event.getViewName());
    }
-
 }

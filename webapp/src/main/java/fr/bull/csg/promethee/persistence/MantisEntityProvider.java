@@ -2,16 +2,18 @@ package fr.bull.csg.promethee.persistence;
 
 import javax.ejb.Stateless;
 
-import fr.bull.csg.promethee.pojo.Mantis;
+import fr.bull.csg.promethee.model.Mantis;
 
 /**
  * @author Thomas Gueze
  */
 @Stateless
-public class MantisEntityProvider extends EjbEntityProvider<Mantis> {
-
-    public MantisEntityProvider() {
-        super(Mantis.class);
-    }
+public class MantisEntityProvider extends EjbEntityProvider<Mantis>
+{
+   /** Constructeur. */
+   public MantisEntityProvider()
+   {
+      super(Mantis.class);
+   }
 
 }

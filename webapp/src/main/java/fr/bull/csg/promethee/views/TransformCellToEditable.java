@@ -8,24 +8,39 @@ import fr.bull.csg.promethee.pojo.ColumnIdentifier;
 import java.util.Map;
 
 /**
+ * Listener commun aux cellules d'un tableau pour les rendre éditables.
  * @author Thomas Gueze
  */
-public class TransformCellToEditable implements ItemClickEvent.ItemClickListener {
+@SuppressWarnings("rawtypes")
+public class TransformCellToEditable implements ItemClickEvent.ItemClickListener
+{
 
-    private final Map<ColumnIdentifier, Field> fields;
+   /** Serial UID. */
+   private static final long serialVersionUID = -6474502703947873628L;
 
-    public TransformCellToEditable(Map<ColumnIdentifier, Field> tableFields) {
-        fields = tableFields;
-    }
+   /** Mapping des champs. */
+   private final Map<ColumnIdentifier, Field> fields;
 
-    @Override
-    public void itemClick(ItemClickEvent event) {
-        if (event.isDoubleClick())
-        {
-            ColumnIdentifier key = new ColumnIdentifier(event.getItemId(), event.getPropertyId());
-            if (fields.containsKey(key)) {
-                fields.get(key).setReadOnly(false);
-            }
-        }
-    }
+   /**
+    * Constructeur.
+    * @param tableFields Mapping des champs
+    */
+   public TransformCellToEditable(Map<ColumnIdentifier, Field> tableFields)
+   {
+      fields = tableFields;
+   }
+
+   /** La gestion de l'event par le listener. */
+   @Override
+   public void itemClick(ItemClickEvent event)
+   {
+      if (event.isDoubleClick())
+      {
+         ColumnIdentifier key = new ColumnIdentifier(event.getItemId(), event.getPropertyId());
+         if (fields.containsKey(key))
+         {
+            fields.get(key).setReadOnly(false);
+         }
+      }
+   }
 }

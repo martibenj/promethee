@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
 	<display-name>Promethee</display-name>
-	<!-- <listener> <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class> 
-		</listener> -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:applicationContext.xml</param-value>
+		<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
 	</context-param>
 	<servlet>
 		<servlet-name>Promethee</servlet-name>
@@ -19,7 +15,7 @@
 		<init-param>
 			<description>PrometheeUI</description>
 			<param-name>UI</param-name>
-			<param-value>fr.bull.csg.promethee.NavigatorUI</param-value>
+			<param-value>fr.bull.csg.promethee.ui.NavigatorUI</param-value>
 		</init-param>
 		<init-param>
 			<description>Application widgetset</description>

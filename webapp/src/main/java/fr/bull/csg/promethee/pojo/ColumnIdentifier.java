@@ -1,14 +1,22 @@
 package fr.bull.csg.promethee.pojo;
 
 /**
+ * Identifiant d'une colonne dans un tableau.
  * @author Thomas Gueze
  */
 public class ColumnIdentifier
 {
+   /** Colonne dans la table. */
    private Object itemId;
 
+   /** Ligne dans la table. */
    private Object propertyId;
 
+   /**
+    * Constructeur.
+    * @param itemId Colonne dans la table
+    * @param propertyId Ligne dans la table
+    */
    public ColumnIdentifier(Object itemId, Object propertyId)
    {
       this.itemId = itemId;
