@@ -3,7 +3,7 @@ Les prochains axes sont :
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
 - Exporter un bout du listener pour avoir un vrai controller
 - Tester l'intégration d'un FMK JEE (hibernate)
-
+- Configurer les plugins maven pour initialiser jboss / base de données / jeu de données
 
 Bnj : 
 
