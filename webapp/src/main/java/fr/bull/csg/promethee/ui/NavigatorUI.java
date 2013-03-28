@@ -1,5 +1,6 @@
 package fr.bull.csg.promethee.ui;
 
+import fr.bull.csg.promethee.persistence.MantisEntityProvider;
 import org.springframework.beans.factory.annotation.Configurable;
 
 import com.vaadin.annotations.Theme;
@@ -30,6 +31,8 @@ public class NavigatorUI extends UI
    /** Objet Vaadin servant de controleur technique Framework. */
    private Navigator navigator;
 
+    private MantisEntityProvider myEjb;
+
    @Override
    protected void init(VaadinRequest request)
    {
@@ -38,9 +41,13 @@ public class NavigatorUI extends UI
 
       // Création et enregistrement des Views
       navigator.addView(DASHBOARD_VERSIONS, new DashboardVersionsView());
-      navigator.addView(VUE_BUILD, new DetailBuildView());
+      navigator.addView(VUE_BUILD, new DetailBuildView(myEjb));
 
       // Lancement de la première View
       navigator.navigateTo(DASHBOARD_VERSIONS);
    }
+
+    public void setMyEjb(MantisEntityProvider myEjb) {
+        this.myEjb = myEjb;
+    }
 }

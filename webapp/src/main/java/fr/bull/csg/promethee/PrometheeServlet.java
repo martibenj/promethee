@@ -1,6 +1,7 @@
 package fr.bull.csg.promethee;
 
 import com.vaadin.server.*;
+import fr.bull.csg.promethee.persistence.MantisEntityProvider;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletConfig;
@@ -24,7 +25,7 @@ public class PrometheeServlet extends VaadinServlet {
             VaadinService service = event.getService();
             final VaadinSession session = event.getSession();
 
-            UIProvider uiProvider = new UIProvider(ep);
+            fr.bull.csg.promethee.ui.UIProvider uiProvider = new fr.bull.csg.promethee.ui.UIProvider(ep);
             session.addUIProvider(uiProvider);
 
         }
