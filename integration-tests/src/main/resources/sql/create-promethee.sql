@@ -1,0 +1,2 @@
+/* Creation de la table mantis */
+create table Mantis (id integer not null, affecte varchar(255), chiffrage varchar(255), commentaire varchar(255), consomme varchar(255), description varchar(255), etat varchar(255), mantis bigint, type varchar(255), primary key (id));

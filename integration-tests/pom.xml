@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.bull.csg.promethee</groupId>
+        <artifactId>all</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+	<name>Promethee : Tests d'integrations</name>
+    <artifactId>integration-tests</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+	<properties>
+        <h2.host>localhost</h2.host>
+        <h2.port>8082</h2.port>
+	</properties>
+
+	<build>
+		    <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.1.1</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>1.3.170</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                          <!-- start server before integration tests -->
+                          <id>start-server</id>
+                          <phase>pre-integration-test</phase>
+                          <goals>
+                            <goal>java</goal>
+                          </goals>
+                          <configuration>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>org.h2.tools.Server</mainClass>
+                            <commandlineArgs>-tcp -tcpAllowOthers -tcpPort ${h2.port} -tcpDaemon</commandlineArgs>
+                          </configuration>
+                         </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>1.5</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                            <version>1.3.170</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                      <driver>org.h2.Driver</driver>
+                      <url>jdbc:h2:tcp://${h2.host}:${h2.port}/~/test</url>
+                      <username>sa</username>
+                      <password></password>
+                    </configuration>
+                    <executions>
+                      <execution>
+                        <id>create-schema</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                          <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                          <srcFiles>
+                            <srcFile>src/main/resources/sql/drop-promethee.sql</srcFile>
+                            <srcFile>src/main/resources/sql/create-promethee.sql</srcFile>
+                          </srcFiles>
+                        </configuration>
+                      </execution>
+                    </executions>
+                  </plugin>
+			</plugins>
+	</build>
+
+</project>
