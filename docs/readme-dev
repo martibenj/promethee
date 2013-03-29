@@ -1,0 +1,24 @@
+Le projet est structuré de la façon suivante :
+
+Parent :
+
+ --> module web app : construit un war
+
+    Pour la construction : mvn clean install
+    Pour un déploiement rapide sur jetty : mvn jetty:run
+     * Attention des fonctionnalités utilisant des modules JEE non disponible dans jetty peuvent bloquer le deploiement de l'application
+     * Le deploiement nécessite alors d'être fait sur un serveur d'appli JEE comme jboss (voir integration-tests)
+
+ --> module integration-tests
+
+    Pour la construction et le passage de tests sur l'application déployée : mvn clean install
+    1) Lance une base SQL H2
+    2) Initialise le schéma de données de la base
+
+    A faire :
+    * Tâche maven : dezippage + configuration (standalone.xml + déploiement du war promethee) de jboss
+    * Tâche maven : lancement de jboss
+    * Faire des tests avec peuplement de la base
+    * Tâche maven : lancement des tests
+    * Tâche maven : arrêt de jboss
+    * Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
