@@ -2,6 +2,7 @@ package fr.bull.csg.promethee;
 
 import com.vaadin.server.*;
 import fr.bull.csg.promethee.persistence.MantisEntityProvider;
+import fr.bull.csg.promethee.ui.MantisUIProvider;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletConfig;
@@ -12,8 +13,11 @@ import javax.servlet.ServletException;
  */
 public class PrometheeServlet extends VaadinServlet {
 
+    /**
+     * Injection de l'ejb stateless servant à faire les requêtes sur la table mantis
+     */
     @EJB
-    private MantisEntityProvider ep;
+    private MantisEntityProvider mantisEntityProvider;
 
     @SuppressWarnings("serial")
     private final SessionInitListener sessionInitListener = new SessionInitListener() {
@@ -25,9 +29,8 @@ public class PrometheeServlet extends VaadinServlet {
             VaadinService service = event.getService();
             final VaadinSession session = event.getSession();
 
-            fr.bull.csg.promethee.ui.UIProvider uiProvider = new fr.bull.csg.promethee.ui.UIProvider(ep);
+            UIProvider uiProvider = new MantisUIProvider(mantisEntityProvider);
             session.addUIProvider(uiProvider);
-
         }
     };
 

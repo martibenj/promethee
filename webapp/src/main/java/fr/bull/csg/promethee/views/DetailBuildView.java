@@ -6,8 +6,7 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import fr.bull.csg.promethee.model.Mantis;
-import fr.bull.csg.promethee.persistence.MantisEntityProvider;
-import fr.bull.csg.promethee.persistence.ModelContainer;
+import fr.bull.csg.promethee.persistence.ContainerFactory;
 import fr.bull.csg.promethee.pojo.ColumnIdentifier;
 import fr.bull.csg.promethee.ui.NavigatorUI;
 
@@ -24,7 +23,7 @@ public class DetailBuildView extends VerticalLayout implements View
    private static final long serialVersionUID = -3581253796593740550L;
 
    /** Constructeur. */
-   public DetailBuildView(MantisEntityProvider myEjb)
+   public DetailBuildView(ContainerFactory<Mantis> mantisContainerFactory)
    {
       setSizeUndefined();
       HorizontalLayout horizontalLayout = new HorizontalLayout();
@@ -81,7 +80,7 @@ public class DetailBuildView extends VerticalLayout implements View
       Table table = new Table();
       table.setPageLength(0);
       table.setSizeUndefined();
-      table.setContainerDataSource(ModelContainer.getModelContainer(Mantis.class, myEjb));
+      table.setContainerDataSource(mantisContainerFactory.getModelContainer());
       table.setColumnCollapsingAllowed(true);
 
       table.setImmediate(true);

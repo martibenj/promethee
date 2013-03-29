@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
+ * Surcharge l'entity provider par défaut pour utiliser le moniteur transactionnel du conteneur EJB
+ * Par défaut l'entity provider inclut la gestion de la transaction ce qui ne permet pas d'utiliser
+ * les ressources du serveur d'application
  * @author Thomas Gueze
  */
 @TransactionManagement
@@ -24,12 +27,16 @@ public abstract class EjbEntityProvider<T> extends MutableLocalEntityProvider<T>
 
     @PostConstruct
     public void init() {
+        // On spécife bien que la gsetion de la transaction est faite par un élement externe
         setTransactionsHandledByProvider(false);
         setEntityManager(em);
     }
 
-    @Override
+    // Methode utilisé pour exécuter l'operation dans une transaction
+    // Le moniteur transactionnel EJB étant utilisé,
+    // il faut spécifier l'annotation TransactionAttribute pour que le conteneur EJB l'execute dans une transaction
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
+    @Override
     protected void runInTransaction(Runnable operation) {
         super.runInTransaction(operation);
     }

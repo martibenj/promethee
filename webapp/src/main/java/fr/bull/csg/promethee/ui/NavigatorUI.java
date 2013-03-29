@@ -1,5 +1,8 @@
 package fr.bull.csg.promethee.ui;
 
+import com.vaadin.addon.jpacontainer.EntityProvider;
+import fr.bull.csg.promethee.model.Mantis;
+import fr.bull.csg.promethee.persistence.ContainerFactory;
 import fr.bull.csg.promethee.persistence.MantisEntityProvider;
 import org.springframework.beans.factory.annotation.Configurable;
 
@@ -31,7 +34,10 @@ public class NavigatorUI extends UI
    /** Objet Vaadin servant de controleur technique Framework. */
    private Navigator navigator;
 
-    private MantisEntityProvider myEjb;
+   /**
+    * Mantis Container Factory
+    */
+   private ContainerFactory<Mantis> mantisContainerFactory;
 
    @Override
    protected void init(VaadinRequest request)
@@ -41,13 +47,13 @@ public class NavigatorUI extends UI
 
       // Création et enregistrement des Views
       navigator.addView(DASHBOARD_VERSIONS, new DashboardVersionsView());
-      navigator.addView(VUE_BUILD, new DetailBuildView(myEjb));
+      navigator.addView(VUE_BUILD, new DetailBuildView(mantisContainerFactory));
 
       // Lancement de la première View
       navigator.navigateTo(DASHBOARD_VERSIONS);
    }
 
-    public void setMyEjb(MantisEntityProvider myEjb) {
-        this.myEjb = myEjb;
+    public void setEntityProvider(EntityProvider<Mantis> mantisContainerFactory) {
+        this.mantisContainerFactory = new ContainerFactory<Mantis>(mantisContainerFactory, Mantis.class);
     }
 }
