@@ -21,68 +21,71 @@
 	</properties>
 
 	<build>
-		    <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.1.1</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.h2database</groupId>
-                            <artifactId>h2</artifactId>
-                            <version>${h2.version}</version>
-                        </dependency>
-                    </dependencies>
-                    <executions>
-                        <execution>
-                          <!-- start server before integration tests -->
-                          <id>start-server</id>
-                          <phase>pre-integration-test</phase>
-                          <goals>
-                            <goal>java</goal>
-                          </goals>
-                          <configuration>
-                            <includePluginDependencies>true</includePluginDependencies>
-                            <mainClass>org.h2.tools.Server</mainClass>
-                            <commandlineArgs>-tcp -tcpAllowOthers -tcpPort ${h2.port} -tcpDaemon</commandlineArgs>
-                          </configuration>
-                         </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>sql-maven-plugin</artifactId>
-                    <version>1.5</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.h2database</groupId>
-                            <artifactId>h2</artifactId>
-                            <version>${h2.version}</version>
-                        </dependency>
-                    </dependencies>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.1.1</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                      <!--
+                        demarrage de la base h2
+                        l'arrêt d'h2 est automatique lors de l'extinction de la jvm donc pas de phase à configurer
+                      -->
+                      <id>start-server</id>
+                      <phase>pre-integration-test</phase>
+                      <goals>
+                        <goal>java</goal>
+                      </goals>
+                      <configuration>
+                        <includePluginDependencies>true</includePluginDependencies>
+                        <mainClass>org.h2.tools.Server</mainClass>
+                        <commandlineArgs>-tcp -tcpAllowOthers -tcpPort ${h2.port} -tcpDaemon</commandlineArgs>
+                      </configuration>
+                     </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>1.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>${h2.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                  <driver>org.h2.Driver</driver>
+                  <url>jdbc:h2:tcp://${h2.host}:${h2.port}/~/test</url>
+                  <username>sa</username>
+                  <password></password>
+                </configuration>
+                <executions>
+                  <execution>
+                    <id>create-schema</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                      <goal>execute</goal>
+                    </goals>
                     <configuration>
-                      <driver>org.h2.Driver</driver>
-                      <url>jdbc:h2:tcp://${h2.host}:${h2.port}/~/test</url>
-                      <username>sa</username>
-                      <password></password>
+                      <srcFiles>
+                        <srcFile>src/main/resources/sql/drop-promethee.sql</srcFile>
+                        <srcFile>src/main/resources/sql/create-promethee.sql</srcFile>
+                      </srcFiles>
                     </configuration>
-                    <executions>
-                      <execution>
-                        <id>create-schema</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                          <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                          <srcFiles>
-                            <srcFile>src/main/resources/sql/drop-promethee.sql</srcFile>
-                            <srcFile>src/main/resources/sql/create-promethee.sql</srcFile>
-                          </srcFiles>
-                        </configuration>
-                      </execution>
-                    </executions>
-                  </plugin>
-			</plugins>
+                  </execution>
+                </executions>
+              </plugin>
+        </plugins>
 	</build>
 
 </project>
