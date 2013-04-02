@@ -4,7 +4,7 @@
 	
 	<persistence-unit name="promethee">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		<jta-data-source>java:jboss/datasources/PrometheeDS</jta-data-source>
 		<class>fr.bull.csg.promethee.model.Mantis</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<shared-cache-mode>NONE</shared-cache-mode>
