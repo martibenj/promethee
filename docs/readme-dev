@@ -14,11 +14,10 @@ Parent :
     Pour la construction et le passage de tests sur l'application déployée : mvn clean install
     1) Lance une base SQL H2
     2) Initialise le schéma de données de la base
+    3) Configure un datasource sur jboss utilisant la base h2 précédement configuré (jboss est récupéré automatique par maven)
+    4) Déploie la webapp sur jboss
 
     A faire :
-    * Tâche maven : dezippage + configuration (standalone.xml + déploiement du war promethee) de jboss
-    * Tâche maven : lancement de jboss
     * Faire des tests avec peuplement de la base
     * Tâche maven : lancement des tests
-    * Tâche maven : arrêt de jboss
     * Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
