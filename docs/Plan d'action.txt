@@ -1,6 +1,5 @@
 Prochains axes de recherche :
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
-- Exporter un bout du listener pour avoir un vrai controller
 - Nouvelle branche clean
 - Faire des tests avec peuplement de la base
 - Tâche maven : lancement des tests
@@ -12,8 +11,6 @@ Bnj :
 - MAN
 
 Thomas :
-- Avoir des POJO et des données en java pour remplir la view
-- Récupérer des data depuis une BD
 
 ------------------------------
 Echéance : Jeudi Matin
@@ -21,7 +18,20 @@ Echéance : Jeudi Matin
 => Présenter la progression depuis la derniere réunion 25/3
 
 ------------------------------
-Done : 
+Done :
+
+- Outillage Maven :
+=> un module supplémentaire lançant une base de données h2 et déployant l'application sur jboss
+
+- Exporter un bout du listener pour avoir un vrai controller
+=> package listener avec deux listener utilisé dans les vues
+
+- Avoir des POJO et des données en java pour remplir la view
+=> utilisation d'un JPAContainer et mapping avec un bean JPA
+
+- Récupérer des data depuis une BD
+=> récupération des mantis depuis la base de données H2
+
 - Voir pour précompiler et éviter la latence lors de la première demande de l'IHM
 => Pas de solution à part minimiser le nombre de composant par page.
 Le premier chargement est plus long à cause de la récupération du WidgetSet
