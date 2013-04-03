@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -8,22 +9,29 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-	<name>Promethee : Tests d'integrations</name>
+    <name>Promethee : Tests d'integrations</name>
     <artifactId>integration-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-	<packaging>jar</packaging>
+    <packaging>jar</packaging>
 
-	<properties>
+    <properties>
         <h2.host>localhost</h2.host>
         <h2.port>8082</h2.port>
         <h2.version>1.3.170</h2.version>
         <h2.user>sa</h2.user>
 
         <promethee-war.version>${project.version}</promethee-war.version>
-	</properties>
+    </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
         <dependency>
             <artifactId>webapp</artifactId>
             <groupId>fr.bull.csg.promethee</groupId>
@@ -33,7 +41,7 @@
         </dependency>
     </dependencies>
 
-	<build>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -48,21 +56,21 @@
                 </dependencies>
                 <executions>
                     <execution>
-                      <!--
-                        demarrage de la base h2
-                        l'arrêt d'h2 est automatique lors de l'extinction de la jvm donc pas de phase à configurer
-                      -->
-                      <id>start-server</id>
-                      <phase>pre-integration-test</phase>
-                      <goals>
-                        <goal>java</goal>
-                      </goals>
-                      <configuration>
-                        <includePluginDependencies>true</includePluginDependencies>
-                        <mainClass>org.h2.tools.Server</mainClass>
-                        <commandlineArgs>-tcp -tcpAllowOthers -tcpPort ${h2.port} -tcpDaemon</commandlineArgs>
-                      </configuration>
-                     </execution>
+                        <!--
+                          demarrage de la base h2
+                          l'arrêt d'h2 est automatique lors de l'extinction de la jvm donc pas de phase à configurer
+                        -->
+                        <id>start-server</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>org.h2.tools.Server</mainClass>
+                            <commandlineArgs>-tcp -tcpAllowOthers -tcpPort ${h2.port} -tcpDaemon</commandlineArgs>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -77,28 +85,28 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                  <driver>org.h2.Driver</driver>
-                  <url>jdbc:h2:tcp://${h2.host}:${h2.port}/~/test</url>
-                  <username>${h2.user}</username>
-                  <password></password>
+                    <driver>org.h2.Driver</driver>
+                    <url>jdbc:h2:tcp://${h2.host}:${h2.port}/~/test</url>
+                    <username>${h2.user}</username>
+                    <password></password>
                 </configuration>
                 <executions>
-                   <!-- Réinitialisation du schéma de base de données -->
-                  <execution>
-                    <id>create-schema</id>
-                    <phase>pre-integration-test</phase>
-                    <goals>
-                      <goal>execute</goal>
-                    </goals>
-                    <configuration>
-                      <srcFiles>
-                        <srcFile>src/main/resources/sql/drop-promethee.sql</srcFile>
-                        <srcFile>src/main/resources/sql/create-promethee.sql</srcFile>
-                      </srcFiles>
-                    </configuration>
-                  </execution>
+                    <!-- Réinitialisation du schéma de base de données -->
+                    <execution>
+                        <id>create-schema</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <srcFiles>
+                                <srcFile>src/main/resources/sql/drop-promethee.sql</srcFile>
+                                <srcFile>src/main/resources/sql/create-promethee.sql</srcFile>
+                            </srcFiles>
+                        </configuration>
+                    </execution>
                 </executions>
-              </plugin>
+            </plugin>
             <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
@@ -155,6 +163,6 @@
                 </executions>
             </plugin>
         </plugins>
-	</build>
+    </build>
 
 </project>
