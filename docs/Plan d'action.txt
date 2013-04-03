@@ -1,10 +1,10 @@
 Prochains axes de recherche :
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
 - Exporter un bout du listener pour avoir un vrai controller
-- Création de BD de test automatisée par script SQL
-- Configurer les plugins maven pour initialiser jboss / base de données / jeu de données
 - Nouvelle branche clean
-
+- Faire des tests avec peuplement de la base
+- Tâche maven : lancement des tests
+- Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
 ------------------------------
 Répartition
 
