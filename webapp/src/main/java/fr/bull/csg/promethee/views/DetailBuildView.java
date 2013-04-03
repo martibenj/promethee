@@ -5,24 +5,33 @@ import com.vaadin.data.Property;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
+import fr.bull.csg.promethee.listener.SelectValueChangeListener;
+import fr.bull.csg.promethee.listener.TransformCellToEditable;
 import fr.bull.csg.promethee.model.Mantis;
 import fr.bull.csg.promethee.persistence.ContainerFactory;
 import fr.bull.csg.promethee.pojo.ColumnIdentifier;
 import fr.bull.csg.promethee.ui.NavigatorUI;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Page de détail d'une version/build.
+ *
  * @author Thomas Gueze
  */
 public class DetailBuildView extends VerticalLayout implements View
 {
-   /** Serial UID. */
+   /**
+    * Serial UID.
+    */
    private static final long serialVersionUID = -3581253796593740550L;
 
-   /** Constructeur. */
+   /**
+    * Constructeur.
+    */
    public DetailBuildView(ContainerFactory<Mantis> mantisContainerFactory)
    {
       setSizeUndefined();
@@ -49,24 +58,12 @@ public class DetailBuildView extends VerticalLayout implements View
       version.setNullSelectionAllowed(false);
       version.setStyleName("selectBox");
 
-      branch.addValueChangeListener(new Property.ValueChangeListener()
-      {
-         /** Serial UID. */
-         private static final long serialVersionUID = 2757333459584776196L;
+      Map<String, List<String>> selectBoxChangesValues = new HashMap<String, List<String>>();
+      selectBoxChangesValues.put("trunk", Arrays.asList("1", "2", "3"));
+      selectBoxChangesValues.put("prod", Arrays.asList("4", "5", "6"));
+      selectBoxChangesValues.put("branch1", Arrays.asList("7", "8", "9"));
 
-         @Override
-         public void valueChange(Property.ValueChangeEvent event)
-         {
-            if ("prod".equals(event.getProperty().getValue()))
-            {
-               version.removeAllItems();
-               version.addItem("4");
-               version.addItem("5");
-               version.addItem("6");
-               version.setValue("4");
-            }
-         }
-      });
+      branch.addValueChangeListener(new SelectValueChangeListener(version, selectBoxChangesValues));
 
       horizontalLayout.addComponent(branch);
       horizontalLayout.addComponent(version);

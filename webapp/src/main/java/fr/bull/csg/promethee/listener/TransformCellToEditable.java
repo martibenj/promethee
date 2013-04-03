@@ -1,4 +1,4 @@
-package fr.bull.csg.promethee.views;
+package fr.bull.csg.promethee.listener;
 
 import com.vaadin.event.ItemClickEvent;
 import com.vaadin.ui.Field;
