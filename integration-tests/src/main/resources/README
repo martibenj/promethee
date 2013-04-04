@@ -1,0 +1,20 @@
+=====================================================
+============= Installation de Promethee =============
+=====================================================
+
+1) Lancer la base de données H2
+
+Dans le répertoire integration-tests-1.0-SNAPSHOT/h2 lancer la commande :
+
+java -jar h2-1.3.170.jar -tcp -tcpAllowOthers -tcpPort 8082
+
+2) Executer les scripts d'initialisation sql
+
+3) Lancer jboss
+
+Dans le répertoire integration-tests-1.0-SNAPSHOT/jboss donner les droits d'écriture aux éxecutables dans bin/ :
+
+Sous unix : chmod u+x bin/*.sh
+Lancer jboss : bin/standalone.sh
+
+4) Accès à l'application à l'url : http://localhost:8080/promethee-1.0-SNAPSHOT

@@ -9,7 +9,6 @@ Bnj :
 - MAN
 
 Thomas :
-- Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
 
 ------------------------------
 Echéance : Jeudi Matin
@@ -18,6 +17,9 @@ Echéance : Jeudi Matin
 
 ------------------------------
 Done :
+
+- Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
+=> assembly rajouté dans le projet integration-tests
 
 - Outillage Maven :
 => un module supplémentaire lançant une base de données h2 et déployant l'application sur jboss
