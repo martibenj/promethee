@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * Property value change listener pour une boite de selection
- * Quand une valeur est changée, la liste est mise à jour avec les valeurs associés
+ * Quand une valeur est changée, la liste est mise à jour avec les valeurs associées
  *
  * @author Thomas Gueze
  */
@@ -21,7 +21,7 @@ public class SelectValueChangeListener implements Property.ValueChangeListener
 
    /**
     * @param p_Select  La boite de selection à valeurs dynamiques
-    * @param p_Valeurs Les valeurs associé à la boite de sélection
+    * @param p_Valeurs Les valeurs associées à la boite de sélection
     */
    public SelectValueChangeListener(AbstractSelect p_Select, Map<String, List<String>> p_Valeurs)
    {
@@ -32,7 +32,7 @@ public class SelectValueChangeListener implements Property.ValueChangeListener
    @Override
    public void valueChange(Property.ValueChangeEvent event)
    {
-      // Si la valeur selectionné est présent dans la liste de valeurs dynamiques
+      // Si la valeur selectionnée est présente dans la liste de valeurs dynamiques
       if (m_Valeurs.containsKey(event.getProperty().getValue()))
       {
          // On supprime les élements courants
@@ -44,7 +44,7 @@ public class SelectValueChangeListener implements Property.ValueChangeListener
             m_Select.addItem(elem);
          }
 
-         // La valeur sélectionné par défaut est la première de la liste
+         // La valeur sélectionnée par défaut est la première de la liste
          m_Select.setValue(m_Valeurs.get(event.getProperty().getValue()).get(0));
       }
    }

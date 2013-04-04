@@ -2,8 +2,6 @@ Prochains axes de recherche :
 - Voir si un composant GWT est customisable (de manière générale) et jusqu'à quel point
 - Nouvelle branche clean
 - Faire des tests avec peuplement de la base
-- Tâche maven : lancement des tests
-- Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
 ------------------------------
 Répartition
 
@@ -11,6 +9,7 @@ Bnj :
 - MAN
 
 Thomas :
+- Tâche maven : assembly pour construire un package d'installation (wars à déployer + conf etc.)
 
 ------------------------------
 Echéance : Jeudi Matin
